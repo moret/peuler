@@ -33,11 +33,11 @@ def main():
     if len(sys.argv) == 3:
         m = int(sys.argv[2])
 
-    cmd_module = __import__('p' + sys.argv[1])
-    t = timeit.Timer(stmt=cmd_module.main)
+    problem = __import__('p' + sys.argv[1]).problem
+    t = timeit.Timer(stmt=problem.run)
     try:
         print 'avg time: %.5fms' % (1000 * t.timeit(number=m) / m)
-        print 'result: ' + str(cmd_module.main())
+        print 'result: ' + str(problem.run())
     except:
         t.print_exc()
 
